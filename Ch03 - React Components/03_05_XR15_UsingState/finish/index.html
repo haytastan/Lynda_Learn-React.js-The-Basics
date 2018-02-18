@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://fb.me/react-0.13.3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+        <title>React Components</title>
+    </head>
+    <body>
+    <div id="react-container"></div>
+    <script type="text/babel">
+        var Checkbox = React.createClass({
+            getInitialState: function() {
+                return {checked: true}
+            },
+            handleCheck: function() {
+                this.setState({checked: !this.state.checked})
+            },
+            render: function() {
+                var msg;
+                if(this.state.checked) {        // matters
+                    msg = "checked";
+                } else {
+                    msg = "unchecked";
+                }
+                return (
+// checked, string/numeric olsaydı <p>This box is {this.state.checked}.</p> denebilirdi
+                    <div>
+                        <input type="checkbox" onChange={this.handleCheck} 
+                        defaultChecked={this.state.checked}/>
+                        <p>This box is {msg}.</p>
+                        <p>There is only {this.props.children} checkbox, not {this.props.v}.</p>
+                    </div>
+                );
+// alt: <p>This box is {(this.state.checked) ? "checked" : "unchecked"}</p>
+            }
+        });
+
+// proplar numeric olduğu için <Checkbox v={2}>{1}</Checkbox> denebilirdi
+        React.render(<Checkbox v="2">1</Checkbox>,
+            document.getElementById('react-container'));
+    </script>
+    </body>
+</html>

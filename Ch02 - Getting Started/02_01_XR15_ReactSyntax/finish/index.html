@@ -1,0 +1,20 @@
+<!-- react app is made of reusable components, which are like functions. components take input and produce html dom. the input for components are either properties accessed with this.props or state elements accessed with this.state. every time state of component changes react rerenders it while props of component cannot be changed
+React.createClass({ render: function() {} }) creates a react component; 
+React.render(</>, mountNode) mounts a react component in our document
+using jsx is optional since babel compiles jsx to pure js and works with that.
+in render function, virtual dom is defined. when state changes, render() function would be called again and it wud rerender state changes. it uses virtual dom and computes the difference btw previous and current virtual doms and just writes this difference to the browser's dom which makes it really fast -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://fb.me/react-0.13.3.min.js"></script>
+        <title>My First React File</title>
+    </head>
+    <body>
+    <script>
+    	// creates div with some properties and text of Hello World inside body tags
+        React.render(React.createElement('div', {id: 'title', className: 'header'}, 'Hello World'), document.body);
+    </script>
+    </body>
+</html>
+

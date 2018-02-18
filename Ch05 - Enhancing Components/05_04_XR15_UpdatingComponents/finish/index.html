@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Component Lifecycle</title>
+    <script src="https://fb.me/react-0.13.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+</head>
+<body>
+<script type="text/babel">
+    var Box = React.createClass({
+        getDefaultProps: function() {
+            return {
+                colorIndex: -1
+            }
+        },
+        getInitialState: function() {
+            return {
+                backgroundColor: "blue",
+                height: 200,
+                width: 200
+            }
+        },
+        update: function() {
+            this.setProps({colorIndex: this.props.colorIndex + 1});
+            // setProps() triggers componentWillReceiveProps
+        },
+// componentWillReceiveProps() allows us to send new properties to a component        
+        componentWillReceiveProps: function(nextProps) { // fires when prop is updated
+          var color = this.props.colors.split(',')[nextProps.colorIndex];
+          if(!color) {this.setProps({colorIndex:0})} //recalls componentWillReceiveProps
+          //console.log(this.props.colorIndex) // old one
+          //console.log(nextProps.colorIndex)  // new one
+          this.setState({backgroundColor: color});
+        },
+        render: function() { // console.log(this.props.colorIndex) // new one
+            return <div style={this.state} onClick={this.update}></div>;
+        }
+    });
+
+    React.render(<Box colors="Red,DarkMagenta,Salmon,Chartreuse"/>, document.body);
+
+</script>
+<!-- component lifecycles: 
+mounting cycles: getDefaultProps-GetInitialState-componentWillMount-render-componentDidMount
+updating cycles: 
+componentWillReceiveProps-shouldComponentUpdate-componentWillUpdate-render-componentDidUpdate-->
+</body>
+</html>
+
+<!-- alt: child component yaratılarak
+
+    var Child = React.createClass({
+        componentWillUpdate(nextProps){ 
+            var color = this.props.colors.split(',')[nextProps.colorIndex];
+            this.stylee.backgroundColor = color;
+        },
+        componentWillMount: function() {
+            this.stylee = {
+                backgroundColor: "blue",
+                height: 200,
+                width: 200
+            }
+        },
+        render: function() {
+            return <div style={this.stylee} onClick={this.props.click}></div>;
+        }
+    });
+
+    var Box = React.createClass({
+        getInitialState: function() {
+            return {
+                colorIndex: -1
+            }
+        },
+        update: function() {
+            if(this.state.colorIndex>2) {this.setState({colorIndex:0})}
+            else {this.setState({colorIndex: this.state.colorIndex + 1});}
+        },
+        render: function() {
+            return <Child colors={this.props.colors} click={this.update} colorIndex={this.state.colorIndex}/>;
+        }
+    });
+
+-->

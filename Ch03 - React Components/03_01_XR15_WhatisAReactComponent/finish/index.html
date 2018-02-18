@@ -1,0 +1,18 @@
+<!-- this method of transforming is no longer supported in new react libraries!
+we are trying to transform jsx to js before run time to get faster. 
+we first placed the helloworld component into helloworld.js in src folder. next we installed node.js to use npm.
+then we got into this finish directory on command line. after we ran the command npm install -g react-tools. 
+now that react-tools is installed we do our transformation and create a js file inside build folder by typing jsx src/ build/
+lastly we add a link to the new file on this index.html and removed the older ones-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://fb.me/react-0.13.3.min.js"></script>
+        <title>My First React File</title>
+    </head>
+    <body>
+    <script src="build/helloworld.js">
+
+    </script>
+    </body>
+</html>

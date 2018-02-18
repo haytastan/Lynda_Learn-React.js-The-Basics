@@ -1,0 +1,30 @@
+{
+  "name": "bulletin-board",
+  "version": "1.0.0",
+  "description": "A React application",
+  "main": "Note.js",
+  "scripts": {
+    "build": "babel js -d built",
+    "start": "httpster -p 3000"
+  },
+  "babel": {
+    "presets": [
+      "react"
+    ]
+  },
+  "keywords": [
+    "react",
+    "javascript",
+    "bulletin",
+    "board"
+  ],
+  "author": "Eve Porcello",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react": "^6.24.1"
+  },
+  "dependencies": {
+    "httpster": "^1.0.3"
+  }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://fb.me/react-0.13.3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+        <title>React Components</title>
+    </head>
+    <body>
+    <div id="react-container"></div>
+    <script type="text/babel">
+        var MyComponent = React.createClass({
+            render: function() {
+                return <div>
+                        <h1>{this.props.text}</h1>
+                        <p>{this.props.children}</p>
+                </div>;
+            }
+        });
+
+// we are reusing our components and sending props to them. for numerical props we can
+// use curly braces instead of quotation mark to pass props as number, not string (?)
+        React.render(<div>
+                    <MyComponent text="Hello World">
+                    This is a hello.
+                    </MyComponent>
+                    <MyComponent text="How are You?">
+                    This is a how are you.
+                    </MyComponent>
+                    <MyComponent text="Goodbye">
+                    This is a goodbye.
+                    </MyComponent>
+                    </div>
+            , document.getElementById('react-container'));
+    </script>
+    </body>
+</html>
+
+<!-- 
+Hello World
+This is a hello.
+How are You?
+This is a how are you.
+Goodbye
+This is a goodbye.
+ -->
