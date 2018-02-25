@@ -50,7 +50,7 @@ componentWillReceiveProps-shouldComponentUpdate-componentWillUpdate-render-compo
 <!-- alt: child component yaratılarak
 
     var Child = React.createClass({
-        componentWillUpdate(nextProps){ 
+        componentWillReceiveProps: function(nextProps){ // alt: componentWillUpdate
             var color = this.props.colors.split(',')[nextProps.colorIndex];
             this.stylee.backgroundColor = color;
         },
@@ -75,6 +75,7 @@ componentWillReceiveProps-shouldComponentUpdate-componentWillUpdate-render-compo
         update: function() {
             if(this.state.colorIndex>2) {this.setState({colorIndex:0})}
             else {this.setState({colorIndex: this.state.colorIndex + 1});}
+            //console.log(this.state.colorIndex) // old one
         },
         render: function() {
             return <Child colors={this.props.colors} click={this.update} colorIndex={this.state.colorIndex}/>;
